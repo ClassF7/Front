@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_t3t4/app/modules/home/home_store.dart';
+import 'package:flutter_t3t4/app/shared/themes/app_colors.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -11,21 +10,48 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var store = HomeStore();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Counter'),
-      ),
-      body: Observer(
-        builder: (context) => Text('${store.counter}'),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          store.increment();
-        },
-        child: const Icon(Icons.add),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 48),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('Porjeto Muliru',
+                    style:
+                        TextStyle(fontSize: 64, color: AppColors.titleColor)),
+                SizedBox(
+                  width: 200,
+                  height: 60,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: const Text(
+                      'Entrar',
+                      style: TextStyle(fontSize: 24),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      onPrimary: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 48,
+          ),
+          Container(
+            height: MediaQuery.of(context).size.height * .55,
+            width: double.maxFinite,
+            color: Colors.pink,
+          )
+        ],
       ),
     );
   }
