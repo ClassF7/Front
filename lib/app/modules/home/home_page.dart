@@ -49,8 +49,11 @@ class _HomePageState extends State<HomePage> {
           Container(
             height: MediaQuery.of(context).size.height * .55,
             width: double.maxFinite,
-            color: Colors.pink,
-          )
+            child: const Image(
+              fit: BoxFit.cover,
+              image: AssetImage('assets/images/projfilmesbanner.png'),
+            ),
+          ),
         ],
       ),
     );
