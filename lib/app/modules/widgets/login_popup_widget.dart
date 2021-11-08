@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_t3t4/app/modules/home/home_controller.dart';
+import 'package:flutter_t3t4/app/modules/home/home_repository/home_repository.dart';
 import 'package:flutter_t3t4/app/shared/themes/app_colors.dart';
 
 class LoginPopUpWidget extends StatelessWidget {
@@ -9,22 +11,41 @@ class LoginPopUpWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var repository = HomeRepository();
+    var controller = HomeController(repository);
     var emailController = TextEditingController();
     var passwordController = TextEditingController();
-    var passwordVisibility = true;
     return SimpleDialog(
         backgroundColor: AppColors.popUpColor,
         elevation: 0.0,
         shape: const RoundedRectangleBorder(
             side: BorderSide.none,
             borderRadius: BorderRadius.all(Radius.circular(20.0))),
-        title: const Text(
-          'Iniciar sessão',
-          style: TextStyle(color: Colors.white, fontSize: 36),
-          textAlign: TextAlign.center,
-          textScaleFactor: 1.5,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            const Center(
+              child: Text(
+                'Iniciar sessão',
+                style: TextStyle(color: Colors.white, fontSize: 36),
+                textAlign: TextAlign.center,
+                textScaleFactor: 1.5,
+              ),
+            ),
+            const SizedBox(
+              width: 150,
+            ),
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: const Icon(Icons.close),
+              color: AppColors.purpleButton,
+              iconSize: 36,
+            )
+          ],
         ),
-        children: <Widget>[
+        children: [
           SizedBox(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -33,6 +54,7 @@ class LoginPopUpWidget extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 48),
                   child: TextField(
                     style: const TextStyle(color: AppColors.textColor),
+                    onChanged: controller.setEmail,
                     controller: emailController,
                     keyboardType: TextInputType.emailAddress,
                     decoration: const InputDecoration(
@@ -56,8 +78,9 @@ class LoginPopUpWidget extends StatelessWidget {
                     builder: (_) {
                       return TextField(
                         style: const TextStyle(color: AppColors.textColor),
+                        onChanged: controller.setPassword,
                         controller: passwordController,
-                        obscureText: passwordVisibility,
+                        obscureText: controller.passwordVisibility,
                         decoration: InputDecoration(
                           fillColor: Colors.white,
                           filled: true,
@@ -68,9 +91,9 @@ class LoginPopUpWidget extends StatelessWidget {
                                   BorderRadius.all(Radius.circular(10))),
                           labelText: 'Senha',
                           suffixIcon: InkWell(
-                            onTap: () {},
+                            onTap: controller.changePasswordVisibility,
                             child: Icon(
-                              passwordVisibility
+                              controller.passwordVisibility
                                   ? Icons.visibility_off
                                   : Icons.visibility,
                               color: AppColors.purpleButton,
@@ -85,7 +108,21 @@ class LoginPopUpWidget extends StatelessWidget {
                     },
                   ),
                 ),
-                Container(
+                const SizedBox(
+                  height: 12,
+                ),
+                Observer(builder: (_) {
+                  return Center(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Text(
+                        controller.erro,
+                        style: const TextStyle(color: Colors.blue),
+                      ),
+                    ),
+                  );
+                }),
+                SizedBox(
                   width: 345,
                   height: 50,
                   child: ElevatedButton(
@@ -99,7 +136,9 @@ class LoginPopUpWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      controller.login(controller.email, controller.password);
+                    },
                   ),
                 ),
                 const SizedBox(
