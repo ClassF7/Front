@@ -8,7 +8,7 @@ class HomeController = HomeControllerBase with _$HomeController;
 abstract class HomeControllerBase with Store {
   final IHomeRepository repository;
   HomeControllerBase(this.repository) {
-    repository.getListaUsuarios();
+    setarListaUsuarios();
   }
 
   @observable
@@ -22,6 +22,14 @@ abstract class HomeControllerBase with Store {
 
   @observable
   String password = '';
+
+  @observable
+  var lista = [];
+
+  @action
+  Future<void> setarListaUsuarios() async {
+    lista = await repository.getListaUsuarios();
+  }
 
   @action
   void setEmail(String value) {
@@ -39,14 +47,14 @@ abstract class HomeControllerBase with Store {
   }
 
   @action
-  Future<void> login(String email, String password) async {
-    var lista = await repository.getListaUsuarios();
-    try {
-      for (var i = 0; i < lista.length; i++) {
-        if (email == lista[i].email && password == lista[i].senha) {}
+  bool login(String email, String password) {
+    for (var i = 0; i < lista.length; i++) {
+      if (email == lista[i].email && password == lista[i].senha) {
+        return true;
+      } else {
+        erro = 'Dados de usuário incorretos. Tente novamente.';
       }
-    } catch (e) {
-      erro = 'Dados de usuário incorretos. Tente novamente.';
     }
+    return false;
   }
 }

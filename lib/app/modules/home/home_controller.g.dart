@@ -70,11 +70,28 @@ mixin _$HomeController on HomeControllerBase, Store {
     });
   }
 
-  final _$loginAsyncAction = AsyncAction('HomeControllerBase.login');
+  final _$listaAtom = Atom(name: 'HomeControllerBase.lista');
 
   @override
-  Future<void> login(String email, String password) {
-    return _$loginAsyncAction.run(() => super.login(email, password));
+  List<dynamic> get lista {
+    _$listaAtom.reportRead();
+    return super.lista;
+  }
+
+  @override
+  set lista(List<dynamic> value) {
+    _$listaAtom.reportWrite(value, super.lista, () {
+      super.lista = value;
+    });
+  }
+
+  final _$setarListaUsuariosAsyncAction =
+      AsyncAction('HomeControllerBase.setarListaUsuarios');
+
+  @override
+  Future<void> setarListaUsuarios() {
+    return _$setarListaUsuariosAsyncAction
+        .run(() => super.setarListaUsuarios());
   }
 
   final _$HomeControllerBaseActionController =
@@ -114,12 +131,24 @@ mixin _$HomeController on HomeControllerBase, Store {
   }
 
   @override
+  bool login(String email, String password) {
+    final _$actionInfo = _$HomeControllerBaseActionController.startAction(
+        name: 'HomeControllerBase.login');
+    try {
+      return super.login(email, password);
+    } finally {
+      _$HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 passwordVisibility: ${passwordVisibility},
 erro: ${erro},
 email: ${email},
-password: ${password}
+password: ${password},
+lista: ${lista}
     ''';
   }
 }
