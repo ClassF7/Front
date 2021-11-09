@@ -51,10 +51,9 @@ abstract class HomeControllerBase with Store {
     for (var i = 0; i < lista.length; i++) {
       if (email == lista[i].email && password == lista[i].senha) {
         return true;
-      } else {
-        erro = 'Dados de usuário incorretos. Tente novamente.';
       }
     }
+    erro = 'Dados de usuário incorretos. Tente novamente.';
     return false;
   }
 }
