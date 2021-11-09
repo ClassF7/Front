@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
                               context: context,
                               barrierDismissible: false,
                               builder: (BuildContext context) {
-                                return LoginPopUpWidget();
+                                return const LoginPopUpWidget();
                               });
                         }),
                   )
