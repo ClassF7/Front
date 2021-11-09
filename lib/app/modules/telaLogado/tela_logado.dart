@@ -63,6 +63,29 @@ class _TelaLogadoState extends State<TelaLogado> {
                 style: TextStyle(fontSize: 24),
               ),
             ),
+            Flexible(
+              child: Padding(
+                padding: const EdgeInsets.all(32.0),
+                child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      childAspectRatio: 190 / 270,
+                      crossAxisSpacing: 40,
+                      mainAxisSpacing: 56,
+                      crossAxisCount: 6,
+                    ),
+                    itemCount: 100,
+                    itemBuilder: (BuildContext ctx, index) {
+                      return Container(
+                        alignment: Alignment.center,
+                        child: const Text('filmes'),
+                        decoration: const BoxDecoration(
+                          color: AppColors.purpleButton,
+                        ),
+                      );
+                    }),
+              ),
+            )
           ],
         ),
       ),

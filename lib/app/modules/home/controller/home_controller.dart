@@ -1,4 +1,4 @@
-import 'package:flutter_t3t4/app/modules/home/home_repository/i_home_repository.dart';
+import 'package:flutter_t3t4/app/modules/home/repository/i_home_repository.dart';
 import 'package:mobx/mobx.dart';
 
 part 'home_controller.g.dart';

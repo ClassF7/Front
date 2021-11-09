@@ -1,5 +1,5 @@
 import 'package:flutter_t3t4/app/models/user_login_model.dart';
-import 'package:flutter_t3t4/app/modules/home/home_repository/i_home_repository.dart';
+import 'i_home_repository.dart';
 
 class HomeRepository implements IHomeRepository {
   var listaTeste = [
