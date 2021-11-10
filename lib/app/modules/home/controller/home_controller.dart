@@ -1,4 +1,4 @@
-import 'package:flutter_t3t4/app/modules/home/home_repository/i_home_repository.dart';
+import 'package:flutter_t3t4/app/modules/home/repository/i_home_repository.dart';
 import 'package:mobx/mobx.dart';
 
 part 'home_controller.g.dart';
@@ -51,10 +51,9 @@ abstract class HomeControllerBase with Store {
     for (var i = 0; i < lista.length; i++) {
       if (email == lista[i].email && password == lista[i].senha) {
         return true;
-      } else {
-        erro = 'Dados de usuário incorretos. Tente novamente.';
       }
     }
+    erro = 'Dados de usuário incorretos. Tente novamente.';
     return false;
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_t3t4/app/modules/home/home_controller.dart';
-import 'package:flutter_t3t4/app/modules/home/home_repository/home_repository.dart';
-import 'package:flutter_t3t4/app/modules/telaLogado/tela_logado.dart';
+import 'package:flutter_t3t4/app/modules/filmes/tela_logado.dart';
+import 'package:flutter_t3t4/app/modules/home/controller/home_controller.dart';
+import 'package:flutter_t3t4/app/modules/home/repository/home_repository.dart';
 import 'package:flutter_t3t4/app/shared/themes/app_colors.dart';
 
 class LoginPopUpWidget extends StatelessWidget {
@@ -14,8 +14,8 @@ class LoginPopUpWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var repository = HomeRepository();
     var controller = HomeController(repository);
-    var emailController = TextEditingController();
-    var passwordController = TextEditingController();
+    var emailController = TextEditingController(text: controller.email);
+    var passwordController = TextEditingController(text: controller.password);
     return SimpleDialog(
         backgroundColor: AppColors.popUpColor,
         elevation: 0.0,
@@ -142,8 +142,10 @@ class LoginPopUpWidget extends StatelessWidget {
                           ? Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => TelaLogado()))
-                          : null;
+                                  builder: (context) => const TelaLogado()))
+                          : Container();
+                      emailController.clear();
+                      passwordController.clear();
                     },
                   ),
                 ),
