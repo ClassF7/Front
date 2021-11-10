@@ -14,8 +14,8 @@ class LoginPopUpWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var repository = HomeRepository();
     var controller = HomeController(repository);
-    var emailController = TextEditingController();
-    var passwordController = TextEditingController();
+    var emailController = TextEditingController(text: controller.email);
+    var passwordController = TextEditingController(text: controller.password);
     return SimpleDialog(
         backgroundColor: AppColors.popUpColor,
         elevation: 0.0,
@@ -144,6 +144,8 @@ class LoginPopUpWidget extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) => const TelaLogado()))
                           : Container();
+                      emailController.clear();
+                      passwordController.clear();
                     },
                   ),
                 ),

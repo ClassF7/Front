@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_t3t4/app/modules/filmes/controller/filmes_controller.dart';
-import 'package:flutter_t3t4/app/modules/filmes/repository/filmes_repository.dart';
 import 'package:flutter_t3t4/app/shared/themes/app_colors.dart';
 
 class TelaLogado extends StatefulWidget {
@@ -13,12 +13,7 @@ class TelaLogado extends StatefulWidget {
 class _TelaLogadoState extends State<TelaLogado> {
   @override
   Widget build(BuildContext context) {
-    var repository = FilmesRepository();
-    var controller = FilmesController(repository);
-    controller.setarListaFilmes;
-    var lista = controller.listaFilmes;
-    print(lista);
-    print(repository.listaTeste.length);
+    var controller = FilmesController();
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -74,27 +69,32 @@ class _TelaLogadoState extends State<TelaLogado> {
             Flexible(
               child: Padding(
                 padding: const EdgeInsets.all(32.0),
-                child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: 190 / 270,
-                      crossAxisSpacing: 40,
-                      mainAxisSpacing: 56,
-                      crossAxisCount: 6,
-                    ),
-                    itemCount: repository.listaTeste.length,
-                    itemBuilder: (BuildContext ctx, index) {
-                      return Container(
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: NetworkImage(
-                                repository.listaTeste[index].imagem),
+                child: Observer(builder: (_) {
+                  return GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        childAspectRatio: 190 / 270,
+                        crossAxisSpacing: 40,
+                        mainAxisSpacing: 56,
+                        crossAxisCount: 6,
+                      ),
+                      itemCount: controller.listaFilmes.length,
+                      itemBuilder: (BuildContext ctx, index) {
+                        return GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: NetworkImage(
+                                    controller.listaFilmes[index].imagem),
+                              ),
+                            ),
                           ),
-                        ),
-                      );
-                    }),
+                        );
+                      });
+                }),
               ),
             )
           ],

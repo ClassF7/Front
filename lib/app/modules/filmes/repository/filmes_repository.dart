@@ -5,7 +5,7 @@ class FilmesRepository implements IFilmesRepository {
   var listaTeste = [
     FilmesModel(
       imagem:
-          ' https://img.elo7.com.br/product/zoom/2677C73/big-poster-filme-o-espetacular-homem-aranha-2012-lo05-90x60-geek.jpg',
+          'https://legadodamarvel.com.br/wp-content/uploads/2021/11/homem-aranha-poster-duende-verde-legadoamarvel-750x938.jpg',
     ),
     FilmesModel(
       imagem:
@@ -14,10 +14,6 @@ class FilmesRepository implements IFilmesRepository {
   ];
   @override
   Future<List<FilmesModel>> getListaFilmes() async {
-    var listaFilmes = <FilmesModel>[];
-    for (var filme in listaTeste) {
-      listaFilmes.add(filme);
-    }
-    return listaFilmes;
+    return listaTeste;
   }
 }
