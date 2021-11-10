@@ -6,4 +6,6 @@ class AppColors {
   static const titleColor = Color(0xFF453C93);
   static const popUpColor = Color(0xFF1A153F);
   static const textColor = Color(0xFF514766);
+  static const subTitleColor = Color(0xFF8A8EDC);
+  static const purpleWindow = Color(0xFF2E2772);
 }

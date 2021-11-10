@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_t3t4/app/modules/filmes/controller/filmes_controller.dart';
+import 'package:flutter_t3t4/app/modules/reviews/tela_review.dart';
 import 'package:flutter_t3t4/app/shared/themes/app_colors.dart';
 
 class TelaLogado extends StatefulWidget {
@@ -81,7 +82,11 @@ class _TelaLogadoState extends State<TelaLogado> {
                       itemCount: controller.listaFilmes.length,
                       itemBuilder: (BuildContext ctx, index) {
                         return GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                              context, 
+                              MaterialPageRoute(builder: (context) => const TelaReview()));
+                          },
                           child: Container(
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
