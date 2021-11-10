@@ -6,7 +6,8 @@ class HomeRepository implements IHomeRepository {
     UserLoginModel(email: 'samuka@maua.br', senha: 'bunda'),
     UserLoginModel(email: 'darth@maua.br', senha: 'cuzao'),
     UserLoginModel(email: 'renan@pinto.br', senha: 'senha'),
-    UserLoginModel(email: 'email', senha: 'senha')
+    UserLoginModel(email: 'email', senha: 'senha'),
+    UserLoginModel(email: '', senha: '')
   ];
   @override
   Future<List<UserLoginModel>> getListaUsuarios() async {

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_t3t4/app/modules/filmes/controller/filmes_controller.dart';
+import 'package:flutter_t3t4/app/modules/filmes/repository/filmes_repository.dart';
 import 'package:flutter_t3t4/app/shared/themes/app_colors.dart';
 
 class TelaLogado extends StatefulWidget {
-  TelaLogado({Key? key}) : super(key: key);
+  const TelaLogado({Key? key}) : super(key: key);
 
   @override
   _TelaLogadoState createState() => _TelaLogadoState();
@@ -11,6 +13,12 @@ class TelaLogado extends StatefulWidget {
 class _TelaLogadoState extends State<TelaLogado> {
   @override
   Widget build(BuildContext context) {
+    var repository = FilmesRepository();
+    var controller = FilmesController(repository);
+    controller.setarListaFilmes;
+    var lista = controller.listaFilmes;
+    print(lista);
+    print(repository.listaTeste.length);
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -74,13 +82,16 @@ class _TelaLogadoState extends State<TelaLogado> {
                       mainAxisSpacing: 56,
                       crossAxisCount: 6,
                     ),
-                    itemCount: 100,
+                    itemCount: repository.listaTeste.length,
                     itemBuilder: (BuildContext ctx, index) {
                       return Container(
                         alignment: Alignment.center,
-                        child: const Text('filmes'),
-                        decoration: const BoxDecoration(
-                          color: AppColors.purpleButton,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: NetworkImage(
+                                repository.listaTeste[index].imagem),
+                          ),
                         ),
                       );
                     }),

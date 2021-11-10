@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_t3t4/app/modules/filmes/tela_logado.dart';
 import 'package:flutter_t3t4/app/modules/home/controller/home_controller.dart';
 import 'package:flutter_t3t4/app/modules/home/repository/home_repository.dart';
-import 'package:flutter_t3t4/app/modules/telaLogado/tela_logado.dart';
 import 'package:flutter_t3t4/app/shared/themes/app_colors.dart';
 
 class LoginPopUpWidget extends StatelessWidget {
@@ -142,7 +142,7 @@ class LoginPopUpWidget extends StatelessWidget {
                           ? Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => TelaLogado()))
+                                  builder: (context) => const TelaLogado()))
                           : Container();
                     },
                   ),
