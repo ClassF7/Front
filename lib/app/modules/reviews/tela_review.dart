@@ -25,16 +25,6 @@ class _TelaReviewState extends State<TelaReview> {
                     'Porjeto Muliro',
                     style: TextStyle(fontSize: 64, color: AppColors.titleColor),
                   ),
-                  const Text(
-                    'Filmes',
-                    style:
-                        TextStyle(fontSize: 32, color: AppColors.subTitleColor),
-                  ),
-                  const Text(
-                    'Séries',
-                    style:
-                        TextStyle(fontSize: 32, color: AppColors.subTitleColor),
-                  ),
                   SizedBox(
                     width: 200,
                     height: 60,
@@ -56,22 +46,48 @@ class _TelaReviewState extends State<TelaReview> {
                 ],
               ),
             ),
-            Container(
-              margin: const EdgeInsets.all(30),
-              padding: const EdgeInsets.all(10),
-              alignment: Alignment.center,
-              decoration: const BoxDecoration(
-                color: AppColors.purpleWindow,
-                borderRadius: BorderRadius.all(
-                    Radius.circular(10.0)),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 30,
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Image.network('https://http2.mlstatic.com/D_NQ_NP_698947-MLB26819450524_022018-O.jpg'),
-                  
-                ],
-                
+              child: Expanded(
+                child: Container(
+                  padding: const EdgeInsets.only(left: 30, top: 25),
+                  width: MediaQuery.of(context).size.width,
+                  height: 800,
+                  decoration: const BoxDecoration(
+                    color: AppColors.purpleWindow,
+                    borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                  ),
+                  child: Container(
+                    width: 350,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 350,
+                          height: 520,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: NetworkImage(
+                                  'https://http2.mlstatic.com/D_NQ_NP_698947-MLB26819450524_022018-O.jpg'),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          alignment: Alignment.center,
+                          child: const Text(
+                            'verdade nua e crua',
+                            style: TextStyle(color: Colors.white, fontSize: 30),
+                            textAlign: TextAlign.center,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ),
           ],
