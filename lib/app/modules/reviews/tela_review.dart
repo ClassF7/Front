@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_t3t4/app/models/filmes_model.dart';
+import 'package:flutter_t3t4/app/modules/network/network_helper.dart';
 import 'package:flutter_t3t4/app/shared/themes/app_colors.dart';
 
 class TelaReview extends StatefulWidget {

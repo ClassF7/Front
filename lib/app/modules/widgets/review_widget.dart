@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_t3t4/app/modules/reviews/controller/review_controller.dart';
 import 'package:getwidget/components/rating/gf_rating.dart';
 
 class ReviewWidget extends StatelessWidget {
@@ -8,6 +9,7 @@ class ReviewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var controller = ReviewController(3);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
