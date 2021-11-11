@@ -84,8 +84,9 @@ class _TelaLogadoState extends State<TelaLogado> {
                         return GestureDetector(
                           onTap: () {
                             Navigator.push(
-                              context, 
-                              MaterialPageRoute(builder: (context) => const TelaReview()));
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const TelaReview()));
                           },
                           child: Container(
                             alignment: Alignment.center,
@@ -93,7 +94,7 @@ class _TelaLogadoState extends State<TelaLogado> {
                               image: DecorationImage(
                                 fit: BoxFit.cover,
                                 image: NetworkImage(
-                                    controller.listaFilmes[index].imagem),
+                                    controller.listaFilmes[index].poster),
                               ),
                             ),
                           ),
