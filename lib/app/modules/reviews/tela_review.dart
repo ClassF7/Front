@@ -54,38 +54,62 @@ class _TelaReviewState extends State<TelaReview> {
                 child: Container(
                   padding: const EdgeInsets.only(left: 30, top: 25),
                   width: MediaQuery.of(context).size.width,
-                  height: 800,
+                  height: MediaQuery.of(context).size.height * .82,
                   decoration: const BoxDecoration(
                     color: AppColors.purpleWindow,
                     borderRadius: BorderRadius.all(Radius.circular(30.0)),
                   ),
                   child: Container(
                     width: 350,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 350,
-                          height: 520,
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: NetworkImage(
-                                  'https://http2.mlstatic.com/D_NQ_NP_698947-MLB26819450524_022018-O.jpg'),
+                    child: Row(children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: 350,
+                            height: 520,
+                            decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: NetworkImage(
+                                    'https://http2.mlstatic.com/D_NQ_NP_698947-MLB26819450524_022018-O.jpg'),
+                              ),
                             ),
                           ),
-                        ),
-                        Container(
-                          alignment: Alignment.center,
-                          child: const Text(
+                          const Text(
                             'verdade nua e crua',
                             style: TextStyle(color: Colors.white, fontSize: 30),
                             textAlign: TextAlign.center,
                           ),
-                        )
-                      ],
-                    ),
+                          const SizedBox(
+                            height: 24,
+                          ),
+                          const Text(
+                            'Avaliação: ',
+                            style: TextStyle(color: Colors.white, fontSize: 22),
+                          ),
+                          const Text(
+                            'Gênero: ',
+                            style: TextStyle(color: Colors.white, fontSize: 22),
+                          ),
+                          const Text(
+                            'Disponível: ',
+                            style: TextStyle(color: Colors.white, fontSize: 22),
+                          ),
+                        ],
+                      ),
+                      const VerticalDivider(
+                        color: Colors.grey,
+                        thickness: 1,
+                        indent: 0,
+                        endIndent: 20,
+                        width: 20,
+                      ),
+                      Column(
+                        children: [Container(), Container()],
+                      )
+                    ]),
                   ),
                 ),
               ),
