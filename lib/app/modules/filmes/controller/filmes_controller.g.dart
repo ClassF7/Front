@@ -12,13 +12,13 @@ mixin _$FilmesController on _FilmesControllerBase, Store {
   final _$listaFilmesAtom = Atom(name: '_FilmesControllerBase.listaFilmes');
 
   @override
-  List<Results> get listaFilmes {
+  List<FilmesModel> get listaFilmes {
     _$listaFilmesAtom.reportRead();
     return super.listaFilmes;
   }
 
   @override
-  set listaFilmes(List<Results> value) {
+  set listaFilmes(List<FilmesModel> value) {
     _$listaFilmesAtom.reportWrite(value, super.listaFilmes, () {
       super.listaFilmes = value;
     });

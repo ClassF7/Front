@@ -7,12 +7,13 @@ class FilmesRepository implements IFilmesRepository {
       NetworkHelper(url: 'http://localhost:8080/movies?n=&t=&a=');
 
   @override
-  Future<List<Results>> getListaFilmes() async {
-    var listaFilmes = <Results>[];
-    FilmesModel filmesModel = FilmesModel.fromJson(await helper.getData());
-    var results = filmesModel.results!;
-    for (var element in results) {
-      listaFilmes.add(Results(
+  Future<List<FilmesModel>> getListaFilmes() async {
+    var listaFilmes = <FilmesModel>[];
+    FilmesModelApi filmesModelApi =
+        FilmesModelApi.fromJson(await helper.getData());
+    var filmesModel = filmesModelApi.results!;
+    for (var element in filmesModel) {
+      listaFilmes.add(FilmesModel(
           id: element.id,
           name: element.name,
           theme: element.theme,

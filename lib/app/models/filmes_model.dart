@@ -1,13 +1,13 @@
-class FilmesModel {
-  List<Results>? results;
+class FilmesModelApi {
+  List<FilmesModel>? results;
 
-  FilmesModel({required this.results});
+  FilmesModelApi({required this.results});
 
-  FilmesModel.fromJson(Map<String, dynamic> json) {
+  FilmesModelApi.fromJson(Map<String, dynamic> json) {
     if (json["results"] != null) {
-      var resultados = <Results>[];
+      var resultados = <FilmesModel>[];
       json["results"].forEach((v) {
-        resultados.add(Results.fromJson(v));
+        resultados.add(FilmesModel.fromJson(v));
       });
       results = resultados;
     }
@@ -22,7 +22,7 @@ class FilmesModel {
   }
 }
 
-class Results {
+class FilmesModel {
   late int id;
   late String name;
   late String theme;
@@ -30,7 +30,7 @@ class Results {
   late double rating;
   late String poster;
 
-  Results(
+  FilmesModel(
       {required this.id,
       required this.name,
       required this.theme,
@@ -38,7 +38,7 @@ class Results {
       required this.rating,
       required this.poster});
 
-  Results.fromJson(Map<String, dynamic> json) {
+  FilmesModel.fromJson(Map<String, dynamic> json) {
     id = json["id"];
     name = json["name"];
     theme = json["theme"];

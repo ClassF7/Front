@@ -14,7 +14,7 @@ abstract class _FilmesControllerBase with Store {
   }
 
   @observable
-  var listaFilmes = <Results>[];
+  var listaFilmes = <FilmesModel>[];
 
   @action
   Future<void> setarListaFilmes() async {
