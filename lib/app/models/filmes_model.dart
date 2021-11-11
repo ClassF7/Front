@@ -4,18 +4,19 @@ class FilmesModel {
   FilmesModel({required this.results});
 
   FilmesModel.fromJson(Map<String, dynamic> json) {
-    if (json['results'] != null) {
-      var results = <Results>[];
-      json['results'].forEach((v) {
-        results.add(Results.fromJson(v));
+    if (json["results"] != null) {
+      var resultados = <Results>[];
+      json["results"].forEach((v) {
+        resultados.add(Results.fromJson(v));
       });
+      results = resultados;
     }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     if (results != null) {
-      data['results'] = results!.map((v) => v.toJson()).toList();
+      data["results"] = results!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -38,22 +39,22 @@ class Results {
       required this.poster});
 
   Results.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    theme = json['theme'];
-    available = json['available'];
-    rating = json['rating'];
-    poster = json['poster'];
+    id = json["id"];
+    name = json["name"];
+    theme = json["theme"];
+    available = json["available"];
+    rating = json["rating"];
+    poster = json["poster"];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['name'] = name;
-    data['theme'] = theme;
-    data['available'] = available;
-    data['rating'] = rating;
-    data['poster'] = poster;
+    data["id"] = id;
+    data["name"] = name;
+    data["theme"] = theme;
+    data["available"] = available;
+    data["rating"] = rating;
+    data["poster"] = poster;
     return data;
   }
 }
