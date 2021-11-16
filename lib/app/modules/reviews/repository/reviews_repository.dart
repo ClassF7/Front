@@ -3,11 +3,8 @@ import 'package:flutter_t3t4/app/modules/network/network_helper.dart';
 import 'package:flutter_t3t4/app/modules/reviews/repository/i_reviews_repository.dart';
 
 class ReviewsRepository implements IReviewsRepository {
-  final int idFilme;
-  ReviewsRepository({required this.idFilme});
-
   @override
-  Future<List<ReviewsModel>> getListaReviews() async {
+  Future<List<ReviewsModel>> getListaReviews(int idFilme) async {
     NetworkHelper helper =
         NetworkHelper(url: 'http://localhost:8080/reviews/$idFilme');
     var listaReviews = <ReviewsModel>[];
@@ -18,10 +15,9 @@ class ReviewsRepository implements IReviewsRepository {
       listaReviews.add(ReviewsModel(
           id: element.id,
           rating: element.rating,
-          classification: element.classification,
           comment: element.comment,
           idMovie: element.idMovie,
-          idUser: element.idUser));
+          nmUser: element.nmUser));
     }
     return listaReviews;
   }

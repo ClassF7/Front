@@ -24,24 +24,21 @@ class ReviewsModelApi {
 class ReviewsModel {
   late int id;
   late int idMovie;
-  late int idUser;
-  late String classification;
+  late String nmUser;
   late double rating;
   late String comment;
 
   ReviewsModel(
       {required this.id,
       required this.idMovie,
-      required this.idUser,
-      required this.classification,
+      required this.nmUser,
       required this.rating,
       required this.comment});
 
   ReviewsModel.fromJson(Map<String, dynamic> json) {
     id = json["id"];
     idMovie = json["idMovie"];
-    idUser = json["idUser"];
-    classification = json["classification"];
+    nmUser = json["nmUser"];
     rating = json["rating"];
     comment = json["comment"];
   }
@@ -50,8 +47,7 @@ class ReviewsModel {
     final Map<String, dynamic> data = <String, dynamic>{};
     data["id"] = id;
     data["idMovie"] = idMovie;
-    data["idUser"] = idUser;
-    data["classification"] = classification;
+    data["nmUser"] = nmUser;
     data["rating"] = rating;
     data["comment"] = comment;
     return data;

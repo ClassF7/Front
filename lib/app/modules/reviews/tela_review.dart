@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_t3t4/app/models/filmes_model.dart';
-import 'package:flutter_t3t4/app/modules/network/network_helper.dart';
+import 'package:flutter_t3t4/app/modules/reviews/controller/review_controller.dart';
+import 'package:flutter_t3t4/app/modules/widgets/review_widget.dart';
 import 'package:flutter_t3t4/app/shared/themes/app_colors.dart';
 
 class TelaReview extends StatefulWidget {
@@ -14,6 +16,7 @@ class TelaReview extends StatefulWidget {
 class _TelaReviewState extends State<TelaReview> {
   @override
   Widget build(BuildContext context) {
+    var controller = ReviewController(widget.filme.id);
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -100,7 +103,8 @@ class _TelaReviewState extends State<TelaReview> {
                           ),
                           Text(
                             'Disponível: ${widget.filme.available}',
-                            style: TextStyle(color: Colors.white, fontSize: 22),
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 22),
                           ),
                         ],
                       ),
@@ -125,11 +129,14 @@ class _TelaReviewState extends State<TelaReview> {
                                   BorderRadius.all(Radius.circular(30.0)),
                             ),
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text(
-                                  'Reviews',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 40),
+                                const Center(
+                                  child: Text(
+                                    'Reviews',
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 40),
+                                  ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(right: 30),
@@ -137,10 +144,20 @@ class _TelaReviewState extends State<TelaReview> {
                                     height: 260,
                                     width: 800,
                                     child: Expanded(
-                                      child: ListView(
-                                        shrinkWrap: true,
-                                        children: [],
-                                      ),
+                                      child: Observer(builder: (_) {
+                                        return ListView.builder(
+                                          shrinkWrap: true,
+                                          itemCount:
+                                              controller.listaReviews.length,
+                                          itemBuilder:
+                                              (BuildContext ctx, index) {
+                                            return ReviewWidget(
+                                              review: controller
+                                                  .listaReviews[index],
+                                            );
+                                          },
+                                        );
+                                      }),
                                     ),
                                   ),
                                 )

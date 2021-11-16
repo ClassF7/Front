@@ -64,7 +64,7 @@ class LoginPopUpWidget extends StatelessWidget {
                       labelStyle: TextStyle(color: AppColors.textColor),
                       filled: true,
                       fillColor: Colors.white,
-                      labelText: 'Email',
+                      labelText: 'Usuário',
                       prefixIcon: Icon(
                         Icons.mail,
                         color: AppColors.purpleButton,

@@ -9,7 +9,7 @@ class ReviewController = _ReviewControllerBase with _$ReviewController;
 
 abstract class _ReviewControllerBase with Store {
   final int index;
-  final IReviewsRepository repository = ReviewsRepository(idFilme: index);
+  final IReviewsRepository repository = ReviewsRepository();
   //adicionar o id do filme de alguma forma no repository
   _ReviewControllerBase(this.index) {
     setarListaReviews();
@@ -20,6 +20,6 @@ abstract class _ReviewControllerBase with Store {
 
   @action
   Future<void> setarListaReviews() async {
-    listaReviews = await repository.getListaReviews();
+    listaReviews = await repository.getListaReviews(index);
   }
 }
