@@ -49,7 +49,7 @@ abstract class HomeControllerBase with Store {
   @action
   bool login(String email, String password) {
     for (var i = 0; i < lista.length; i++) {
-      if (email == lista[i].email && password == lista[i].senha) {
+      if (email == lista[i].user && password == lista[i].senha) {
         return true;
       }
     }

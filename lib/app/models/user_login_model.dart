@@ -1,6 +1,6 @@
 class UserLoginModel {
-  final String email;
+  final String user;
   final String senha;
 
-  UserLoginModel({required this.email, required this.senha});
+  UserLoginModel({required this.user, required this.senha});
 }
