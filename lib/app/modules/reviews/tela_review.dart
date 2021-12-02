@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_t3t4/app/models/filmes_model.dart';
 import 'package:flutter_t3t4/app/modules/reviews/controller/review_controller.dart';
 import 'package:flutter_t3t4/app/modules/widgets/review_widget.dart';
@@ -160,7 +161,44 @@ class _TelaReviewState extends State<TelaReview> {
                                       }),
                                     ),
                                   ),
-                                )
+                                ),
+                                const Divider(
+                                  height: 20,
+                                  thickness: 5,
+                                  indent: 20,
+                                  endIndent: 20,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 20, right: 30),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      const Text(
+                                        "Faça seu review!",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 40),
+                                      ),
+                                      RatingBar.builder(
+                                        initialRating: 0,
+                                        minRating: 1,
+                                        direction: Axis.horizontal,
+                                        allowHalfRating: true,
+                                        itemCount: 5,
+                                        itemPadding: const EdgeInsets.symmetric(
+                                            horizontal: 4.0),
+                                        itemBuilder: (context, _) => const Icon(
+                                          Icons.star,
+                                          color: Colors.amber,
+                                        ),
+                                        onRatingUpdate: (rating) {
+                                          print(rating);
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ],
                             ),
                           ),

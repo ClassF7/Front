@@ -3,8 +3,7 @@ import 'i_home_repository.dart';
 
 class HomeRepository implements IHomeRepository {
   var listaTeste = [
-    UserLoginModel(user: 'caaroolinag', senha: 'Carol123'),
-    UserLoginModel(user: '', senha: '')
+    UserLoginModel(user: 'murilo', senha: 'professor'),
   ];
   @override
   Future<List<UserLoginModel>> getListaUsuarios() async {
