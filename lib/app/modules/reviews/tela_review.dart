@@ -231,6 +231,26 @@ class _TelaReviewState extends State<TelaReview> {
                                     ),
                                   ),
                                 ),
+                                Center(
+                                  child: SizedBox(
+                                    height: 50,
+                                    width: 350,
+                                    child: ElevatedButton(
+                                      child: const Text(
+                                        'Enviar',
+                                        style: TextStyle(fontSize: 24),
+                                      ),
+                                      style: ElevatedButton.styleFrom(
+                                        onPrimary: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        // mandar pro back
+                                      }),
+                                  ),
+                                ),
                               ],
                             ),
                           ),
