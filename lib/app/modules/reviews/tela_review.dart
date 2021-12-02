@@ -217,17 +217,21 @@ class _TelaReviewState extends State<TelaReview> {
                                     ],
                                   ),
                                 ),
-                                const Padding(
-                                  padding: EdgeInsets.all(20),
-                                  child: TextField(
-                                    style: TextStyle(color: AppColors.textColor),
-                                    keyboardType: TextInputType.emailAddress,
-                                    decoration: InputDecoration(
-                                      border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(Radius.circular(10))),
-                                      labelStyle: TextStyle(color: AppColors.textColor),
-                                      filled: true,
-                                      fillColor: Colors.white,
+                                const SizedBox(
+                                  height: 250,
+                                  child: Padding(
+                                    padding: EdgeInsets.all(20),
+                                    child: TextField(
+                                      maxLines: null,
+                                      style: TextStyle(color: AppColors.textColor),
+                                      keyboardType: TextInputType.emailAddress,
+                                      decoration: InputDecoration(
+                                        border: OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(Radius.circular(10))),
+                                        labelStyle: TextStyle(color: AppColors.textColor),
+                                        filled: true,
+                                        fillColor: Colors.white,
+                                      ),
                                     ),
                                   ),
                                 ),
