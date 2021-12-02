@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -5,6 +7,7 @@ import 'package:flutter_t3t4/app/models/filmes_model.dart';
 import 'package:flutter_t3t4/app/modules/reviews/controller/review_controller.dart';
 import 'package:flutter_t3t4/app/modules/widgets/review_widget.dart';
 import 'package:flutter_t3t4/app/shared/themes/app_colors.dart';
+import 'package:http/http.dart';
 
 class TelaReview extends StatefulWidget {
   final FilmesModel filme;
@@ -15,6 +18,21 @@ class TelaReview extends StatefulWidget {
 }
 
 class _TelaReviewState extends State<TelaReview> {
+  final url = "http://localhost:8080/reviews";
+
+  void postData() async {
+    try {
+    final response = await post(Uri.parse(url), body: {
+      "idmovie": "1",
+      "nmuser": "2",
+      "rating": "2",
+      "comment": "2"
+    });
+
+    print(response.body);
+    } catch (er) {}
+  }
+
   @override
   Widget build(BuildContext context) {
     var controller = ReviewController(widget.filme.id);
@@ -197,6 +215,20 @@ class _TelaReviewState extends State<TelaReview> {
                                         },
                                       ),
                                     ],
+                                  ),
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.all(20),
+                                  child: TextField(
+                                    style: TextStyle(color: AppColors.textColor),
+                                    keyboardType: TextInputType.emailAddress,
+                                    decoration: InputDecoration(
+                                      border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                                      labelStyle: TextStyle(color: AppColors.textColor),
+                                      filled: true,
+                                      fillColor: Colors.white,
+                                    ),
                                   ),
                                 ),
                               ],
