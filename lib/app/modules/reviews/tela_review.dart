@@ -20,13 +20,13 @@ class TelaReview extends StatefulWidget {
 class _TelaReviewState extends State<TelaReview> {
   final url = "http://localhost:8080/reviews";
 
-  void postData() async {
+  void postData(idMovie, nomeUsuario, rating, comment) async {
     try {
     final response = await post(Uri.parse(url), body: {
-      "idmovie": "1",
-      "nmuser": "2",
-      "rating": "2",
-      "comment": "2"
+      "idmovie": "$idMovie",
+      "nmuser": "$nomeUsuario",
+      "rating": "$rating",
+      "comment": "$comment"
     });
 
     print(response.body);
@@ -251,7 +251,8 @@ class _TelaReviewState extends State<TelaReview> {
                                         ),
                                       ),
                                       onPressed: () {
-                                        // mandar pro back
+                                        // postData(widget.filme.id, "Murilo", rating, comment)
+                                        setState(() {});
                                       }),
                                   ),
                                 ),
