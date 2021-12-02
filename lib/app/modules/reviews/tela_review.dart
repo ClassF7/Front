@@ -22,20 +22,22 @@ class _TelaReviewState extends State<TelaReview> {
 
   void postData(idMovie, nomeUsuario, rating, comment) async {
     try {
-    final response = await post(Uri.parse(url), body: {
-      "idmovie": "$idMovie",
-      "nmuser": "$nomeUsuario",
-      "rating": "$rating",
-      "comment": "$comment"
-    });
+      final response = await post(Uri.parse(url), body: {
+        "idmovie": "$idMovie",
+        "nmuser": "$nomeUsuario",
+        "rating": "$rating",
+        "comment": "$comment"
+      });
 
-    print(response.body);
+      print(response.body);
     } catch (er) {}
   }
 
   @override
   Widget build(BuildContext context) {
     var controller = ReviewController(widget.filme.id);
+    double _rating = 0;
+    TextEditingController reviewController = TextEditingController();
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -202,7 +204,7 @@ class _TelaReviewState extends State<TelaReview> {
                                         initialRating: 0,
                                         minRating: 1,
                                         direction: Axis.horizontal,
-                                        allowHalfRating: true,
+                                        allowHalfRating: false,
                                         itemCount: 5,
                                         itemPadding: const EdgeInsets.symmetric(
                                             horizontal: 4.0),
@@ -211,24 +213,28 @@ class _TelaReviewState extends State<TelaReview> {
                                           color: Colors.amber,
                                         ),
                                         onRatingUpdate: (rating) {
-                                          print(rating);
+                                          _rating = rating;
                                         },
                                       ),
                                     ],
                                   ),
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   height: 250,
                                   child: Padding(
-                                    padding: EdgeInsets.all(20),
+                                    padding: const EdgeInsets.all(20),
                                     child: TextField(
+                                      controller: reviewController,
                                       maxLines: null,
-                                      style: TextStyle(color: AppColors.textColor),
+                                      style: const TextStyle(
+                                          color: AppColors.textColor),
                                       keyboardType: TextInputType.emailAddress,
-                                      decoration: InputDecoration(
+                                      decoration: const InputDecoration(
                                         border: OutlineInputBorder(
-                                            borderRadius: BorderRadius.all(Radius.circular(10))),
-                                        labelStyle: TextStyle(color: AppColors.textColor),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10))),
+                                        labelStyle: TextStyle(
+                                            color: AppColors.textColor),
                                         filled: true,
                                         fillColor: Colors.white,
                                       ),
@@ -240,20 +246,25 @@ class _TelaReviewState extends State<TelaReview> {
                                     height: 50,
                                     width: 350,
                                     child: ElevatedButton(
-                                      child: const Text(
-                                        'Enviar',
-                                        style: TextStyle(fontSize: 24),
-                                      ),
-                                      style: ElevatedButton.styleFrom(
-                                        onPrimary: Colors.white,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10),
+                                        child: const Text(
+                                          'Enviar',
+                                          style: TextStyle(fontSize: 24),
                                         ),
-                                      ),
-                                      onPressed: () {
-                                        // postData(widget.filme.id, "Murilo", rating, comment)
-                                        setState(() {});
-                                      }),
+                                        style: ElevatedButton.styleFrom(
+                                          onPrimary: Colors.white,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                        ),
+                                        onPressed: () {
+                                          postData(
+                                              widget.filme.id,
+                                              'Murilo',
+                                              _rating * 2,
+                                              reviewController.text);
+                                          setState(() {});
+                                        }),
                                   ),
                                 ),
                               ],
